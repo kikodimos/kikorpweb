@@ -2,44 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Roleplay Server</title>
+  <title>Legends Roleplay</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
 </head>
 <body>
 
 <header class="hero">
-  <h1 class="fade-in">🔥LEGENDS ROLEPLAY OFFICIAL🔥</h1>
-  <p class="fade-in delay">Dodji kod nas i iskusi MID RP na pravi nacin</p>
-  <a href="https://discord.gg/balkanlegendsrp" class="btn fade-in delay2">Join Discord</a>
+  <h1 class="animate__animated animate__fadeInDown">🔥 LEGENDS ROLEPLAY 🔥</h1>
+  <p class="animate__animated animate__fadeInUp">Dođi kod nas i iskusi MID RP na pravi način</p>
+  <div class="buttons">
+    <a href="https://discord.gg/balkanlegendsrp" class="btn">Join Discord</a>
+    <a href="#videos" class="btn secondary">Pogledaj videe</a>
+    <a href="#tiktok" class="btn secondary">TikTok</a>
+  </div>
 </header>
 
 <section class="info">
   <h2>About Server</h2>
-  <p>
-    Dobrodosli na website legends roleplaya, nass staff je aktivan ocekujemo vas na serveru!
-  </p>
+  <p>Dobrodošli na Legends Roleplay! Aktivan staff, ozbiljan RP i dobra ekipa te čekaju.</p>
 </section>
 
-<section class="videos">
-  <h2>🎥 Videi</h2>
-
+<section id="videos" class="videos">
+  <h2>🎥 YouTube Videi</h2>
   <div class="video-container">
     <iframe src="https://www.youtube.com/embed/HmDEcsDhsuw" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/HmDEcsDhsuw" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
   </div>
 </section>
 
+<section id="tiktok" class="videos">
+  <h2>📱 TikTok Videi</h2>
+  <div class="video-container">
+    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@tiktok/video/70123456789" data-video-id="70123456789" style="max-width: 605px;min-width: 325px;">
+    </blockquote>
+  </div>
+</section>
+
+<section class="live">
+  <h2>🔴 TikTok LIVE</h2>
+  <p id="liveStatus">Offline</p>
+  <a href="https://www.tiktok.com/@yourprofile/live" target="_blank" class="btn">Gledaj LIVE</a>
+</section>
+
 <section class="discord">
-  <h2>💬 Discord</h2>
-  <iframe src="https://discord.com/widget?id=1413643467799793728&theme=dark"
-    width="350" height="500" allowtransparency="true" frameborder="0">
-  </iframe>
+  <h2>💬 Discord Online Members</h2>
+  <iframe src="https://discord.com/widget?id=1413643467799793728&theme=dark" width="350" height="500"></iframe>
 </section>
 
 <footer>
   <p>Developer: <span>KIKODIMOS</span></p>
 </footer>
 
-<script src="script.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+<script>
+// Fake LIVE status (možeš kasnije povezati API)
+function checkLive() {
+  const live = Math.random() > 0.5;
+  document.getElementById('liveStatus').innerText = live ? '🟢 ONLINE' : '🔴 OFFLINE';
+}
+setInterval(checkLive, 5000);
+</script>
+
 </body>
 </html>
