@@ -13,42 +13,38 @@
   <p class="animate__animated animate__fadeInUp">Dođi kod nas i iskusi MID RP na pravi način</p>
   <div class="buttons">
     <a href="https://discord.gg/balkanlegendsrp" class="btn">Join Discord</a>
-    <a href="#videos" class="btn secondary">Pogledaj videe</a>
+    <a href="#videos" class="btn secondary">Videi</a>
     <a href="#tiktok" class="btn secondary">TikTok</a>
   </div>
 </header>
 
 <section class="info">
   <h2>About Server</h2>
-  <p>Dobrodošli na Legends Roleplay! Aktivan staff, ozbiljan RP i dobra ekipa te čekaju.</p>
+  <p>Dobrodošli na Legends Roleplay! Aktivan staff i jaka zajednica.</p>
 </section>
 
 <section id="videos" class="videos">
   <h2>🎥 YouTube Videi</h2>
   <div class="video-container">
     <iframe src="https://www.youtube.com/embed/HmDEcsDhsuw" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/HmDEcsDhsuw" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
   </div>
 </section>
 
 <section id="tiktok" class="videos">
   <h2>📱 TikTok Videi</h2>
   <div class="video-container">
-    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@kikodimos7/video/7626161984144231702" data-video-id="7626161984144231702" style="max-width: 605px;min-width: 325px;">
-    </blockquote>
+    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@tiktok/video/70123456789" data-video-id="70123456789"></blockquote>
+    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@tiktok/video/70123456780" data-video-id="70123456780"></blockquote>
   </div>
-</section>
-
-<section class="live">
-  <h2>🔴 TikTok LIVE</h2>
-  <p id="liveStatus">Offline</p>
-  <a href="https://www.tiktok.com/@kikodimos7/live" target="_blank" class="btn">Gledaj LIVE</a>
 </section>
 
 <section class="discord">
   <h2>💬 Discord Online Members</h2>
   <iframe src="https://discord.com/widget?id=1413643467799793728&theme=dark" width="350" height="500"></iframe>
+
+  <p id="memberCount">Loading members...</p>
 </section>
 
 <footer>
@@ -57,13 +53,40 @@
 
 <script async src="https://www.tiktok.com/embed.js"></script>
 <script>
-// Fake LIVE status (možeš kasnije povezati API)
-function checkLive() {
-  const live = Math.random() > 0.5;
-  document.getElementById('liveStatus').innerText = live ? '🟢 ONLINE' : '🔴 OFFLINE';
-}
-setInterval(checkLive, 5000);
-</script>
 
-</body>
-</html>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Scroll animacije
+const sections = document.querySelectorAll("section");
+sections.forEach(sec => {
+  sec.style.opacity = 0;
+  sec.style.transform = "translateY(50px)";
+  sec.style.transition = "all 0.8s ease";
+});
+
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    let pos = sec.getBoundingClientRect().top;
+    if (pos < window.innerHeight - 100) {
+      sec.style.opacity = 1;
+      sec.style.transform = "translateY(0)";
+    }
+  });
+});
+
+// Discord member count (REAL)
+async function fetchDiscordMembers() {
+  try {
+    const res = await fetch("https://discord.com/api/guilds/1413643467799793728/widget.json");
+    const data = await res.json();
+
+    document.getElementById("memberCount").innerText = `Online: ${data.presence_count}`;
+  } catch {
+    document.getElementById("memberCount").innerText = "Ne može učitati članove";
+}
